@@ -20,6 +20,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-mocha');
 	grunt.loadNpmTasks('grunt-parallel');
 	grunt.loadNpmTasks('grunt-markdownlint');
+	grunt.loadNpmTasks('grunt-ts');
 	grunt.loadTasks('build/tasks');
 
 	var langs;
@@ -46,6 +47,11 @@ module.exports = function (grunt) {
 	process.env.NODE_NO_HTTP2 = 1; // to hide node warning - (node:18740) ExperimentalWarning: The http2 module is an experimental API.
 
 	grunt.initConfig({
+		ts: {
+			default: {
+				tsconfig: './tsconfig.json'
+			}
+		},
 		pkg: grunt.file.readJSON('package.json'),
 		parallel: {
 			'browser-test': {
@@ -374,6 +380,7 @@ module.exports = function (grunt) {
 		'clean',
 		'eslint',
 		'validate',
+		'ts',
 		'concat:commons',
 		'configure',
 		'babel',
